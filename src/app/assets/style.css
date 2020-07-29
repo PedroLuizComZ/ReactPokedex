@@ -1,0 +1,253 @@
+:root {
+	--main-txt-color: #ffffff;
+}
+
+html {
+	background: #222222;
+}
+
+body {
+	font-family: "Roboto";
+	margin: 0px;
+}
+
+a {
+	text-decoration: none;
+}
+
+.container {
+	max-width: 950px;
+	margin: 20px auto;
+}
+
+.container-detail {
+	max-width: 950px;
+	margin: 0px auto;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 20px;
+	margin: 0 12px;
+}
+
+@media (max-width: 765px) {
+	.grid {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}
+
+.grid-item {
+	background-color: #fc6c6d;
+	border-radius: 25px;
+	cursor: pointer;
+}
+
+.grid-item:hover {
+	opacity: 0.8;
+	transition: ease-in-out 0.3s;
+}
+
+.grid-item__title {
+	color: var(--main-txt-color);
+	padding: 0 20px;
+	text-transform: capitalize;
+}
+
+.item-separator {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.grid-item__label-container {
+	flex: 1;
+}
+
+.grid-item__label {
+	padding: 8px 14px;
+	margin-left: 20px;
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 20px;
+	color: var(--main-txt-color);
+	border: solid 1px;
+}
+
+.grid-item__image {
+	width: 130px;
+	margin: 8px 20px 8px auto;
+}
+
+.pagination-container {
+	margin: 16px 8px;
+}
+
+.MuiPagination-ul {
+	justify-content: center;
+}
+
+button.MuiPaginationItem-outlined {
+	color: var(--main-txt-color);
+	border: 1px solid rgba(255, 255, 255, 0.23);
+}
+
+.detail {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 20px;
+}
+
+.detail-header {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.detail-header__image {
+	padding: 0 20px;
+	width: 200px;
+}
+
+.detail__image {
+	position: relative;
+	top: 35px;
+}
+
+.detail__image--proportion {
+	width: 200px;
+}
+
+.description {
+	width: calc(100vw - 30px);
+	background: #ffffff;
+	border-radius: 50px 50px 0px 0px;
+	padding-top: 30px;
+	max-width: 950px;
+	margin: 0 auto;
+}
+
+.description__title {
+	text-align: center;
+	text-transform: capitalize;
+	font-size: 32px;
+}
+
+.description__identifier {
+	font-size: 20px;
+	opacity: 0.8;
+}
+
+.label-container {
+	display: flex;
+	justify-content: center;
+}
+
+.description__label-container {
+	text-align: center;
+	margin: 0 20px;
+}
+
+.fire {
+	background: #fd7d24;
+}
+
+.flying {
+	background: linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
+}
+
+.grass {
+	background: #9bcc50;
+}
+
+.poison {
+	background: #b97fc9;
+}
+
+.water {
+	background: #4592c4;
+}
+
+.bug {
+	background: #729f3f;
+}
+
+.normal {
+	background: #a4acaf;
+}
+
+.electric {
+	background-color: #eed535;
+}
+
+.ground {
+	background: linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
+}
+
+.fairy {
+	background: #fdb9e9;
+}
+
+.fighting {
+	background: #d56723;
+}
+
+.psychic {
+	background: #f366b9;
+}
+
+.rock {
+	background: #a38c21;
+}
+
+.steel {
+	background: #9eb7b8;
+}
+
+.ice {
+	background-color: #51c4e7;
+}
+
+.ghost {
+	background-color: #7b62a3;
+}
+
+.dragon {
+	background: linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
+}
+
+.dark {
+	background-color: #707070;
+}
+
+.description__label {
+	padding: 8px 14px;
+	border-radius: 20px;
+	color: var(--main-txt-color);
+}
+
+.description__status-container {
+	margin: 25px;
+}
+
+.description__status-item {
+	display: flex;
+	align-items: center;
+}
+
+.status__name {
+	padding: 0 8px;
+	min-width: 130px;
+}
+
+.status__value {
+	padding: 0 8px;
+	min-width: 40px;
+	text-align: center;
+}
+
+.status__slider {
+	padding: 0 8px;
+	flex: 1;
+}
