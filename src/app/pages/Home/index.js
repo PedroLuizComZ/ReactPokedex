@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import PokedexLogo from "../../assets/images/Pokédex_logo.png";
 import { pokemonDetailController } from "../../controllers/pokemonController";
 import { NavLink } from "react-router-dom";
@@ -8,6 +7,8 @@ import MuiAlert from "@material-ui/lab/Alert";
 import Pagination from "@material-ui/lab/Pagination";
 import { makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
+import FavoriteBtn from "../../components/FavoriteBtn";
+import Loader from "../../components/Loader";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -27,14 +28,11 @@ const useStyles = makeStyles((theme) => ({
 
 function Home() {
 	const classes = useStyles();
-	const favorites = useSelector((state) => state);
-	const dispatch = useDispatch();
 	const [pokemonList, setPokemonList] = useState([]);
 	const [offset, setOffset] = useState(0);
 	const [searchInput, setSearchInput] = useState("");
 	const [open, setOpen] = React.useState(false);
 	const [page, setPage] = React.useState(1);
-	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		getPokemonList(offset);
@@ -59,7 +57,6 @@ function Home() {
 
 	async function searchPokemon() {
 		if (searchInput === "") {
-			setOpen(true);
 			return;
 		}
 		const newPokemonList = await pokemonDetailController(
@@ -70,15 +67,8 @@ function Home() {
 			: setOpen(true);
 	}
 
-	function addToFavorites(pokemon) {
-		dispatch({
-			type: "ADD_TO_FAVORITES",
-			pokemon: pokemon,
-		});
-	}
-
 	function keyPress(e) {
-		if (e.keyCode == 13) {
+		if (e.keyCode === 13) {
 			searchPokemon();
 		}
 	}
@@ -99,7 +89,11 @@ function Home() {
 
 	return (
 		<div className={"container"}>
-			<img src={PokedexLogo} className={"detail-header__image"} />
+			<img
+				alt={"PokedexLogo"}
+				src={PokedexLogo}
+				className={"detail-header__image"}
+			/>
 			<Paper className={classes.root}>
 				<InputBase
 					className={classes.input}
@@ -117,44 +111,46 @@ function Home() {
 					<SearchIcon />
 				</IconButton>
 			</Paper>
-			<section className={"grid"}>
-				{pokemonList.length !== 0
-					? pokemonList.map((pokemon, count) => (
-							<NavLink
-								className={
-									"grid-item " + pokemon.types[0].type.name
-								}
-								key={count}
-								to={"detalhe/" + pokemon.id}
-							>
-								<h2 className={"grid-item__title"}>
-									{pokemon.name}
-								</h2>
-								<div className={"item-separator"}>
-									<div
-										className={"grid-item__label-container"}
-									>
-										{pokemon.types.map((type) => (
-											<label
-												key={type.type.name}
-												className={
-													"grid-item__label " +
-													type.type.name
-												}
-											>
-												{type.type.name}
-											</label>
-										))}
-									</div>
-									<img
-										className={"grid-item__image"}
-										src={pokemon.sprites.front_default}
-									/>
+			{pokemonList.length !== 0 ? (
+				<section className={"grid"}>
+					{pokemonList.map((pokemon, count) => (
+						<NavLink
+							className={
+								"grid-item " + pokemon.types[0].type.name
+							}
+							key={count}
+							to={"detalhe/" + pokemon.id}
+						>
+							<h2 className={"grid-item__title"}>
+								{pokemon.name}
+							</h2>
+							<div className={"item-separator"}>
+								<div className={"grid-item__label-container"}>
+									{pokemon.types.map((type) => (
+										<label
+											key={type.type.name}
+											className={
+												"grid-item__label " +
+												type.type.name
+											}
+										>
+											{type.type.name}
+										</label>
+									))}
 								</div>
-							</NavLink>
-					  ))
-					: pokemonList}
-			</section>
+								<img
+									alt={pokemon.name}
+									className={"grid-item__image"}
+									src={pokemon.sprites.front_default}
+								/>
+							</div>
+						</NavLink>
+					))}
+				</section>
+			) : (
+				<Loader />
+			)}
+
 			<footer className={"pagination-container"}>
 				<Pagination
 					count={81}
@@ -168,10 +164,6 @@ function Home() {
 				/>
 			</footer>
 
-			<p>{favorites}</p>
-			<button type={"button"} onClick={() => addToFavorites("Pikachu")}>
-				Favorito
-			</button>
 			<Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
 				<MuiAlert
 					elevation={6}
@@ -182,6 +174,7 @@ function Home() {
 					Pokemon não encontrado, tente novamente!
 				</MuiAlert>
 			</Snackbar>
+			<FavoriteBtn />
 		</div>
 	);
 }

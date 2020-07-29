@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./app/pages/Home/index";
 import Detail from "./app/pages/Detail/index";
+import Favorites from "./app/pages/Favorites/index";
 
 function Routes() {
 	return (
@@ -10,6 +11,7 @@ function Routes() {
 			<Switch>
 				<Route exact path="/" component={Home} />
 				<Route path="/detalhe/:id" component={Detail} />
+				<Route path="/favoritos" component={Favorites} />
 			</Switch>
 		</BrowserRouter>
 	);
