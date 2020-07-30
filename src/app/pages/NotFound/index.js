@@ -12,7 +12,7 @@ function NotFound() {
 					className={"detail-header__image"}
 				/>
 			</NavLink>
-			<h1 className={"favorite__text"}>PAginá não encontrada</h1>
+			<h1 className={"favorite__text"}>Página não encontrada</h1>
 		</div>
 	);
 }
