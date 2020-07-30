@@ -12,6 +12,7 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBtn from "../../components/FavoriteBtn";
 import Loader from "../../components/Loader";
+import BackBtn from "../../components/BackBtn";
 
 function Detail(props) {
 	useEffect(() => {
@@ -68,6 +69,7 @@ function Detail(props) {
 						}
 					>
 						<div className={"favorite-container"}>
+							<BackBtn />
 							{favorites.find(
 								(element) => element.name === pokemonData.name
 							) !== undefined ? (

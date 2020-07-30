@@ -1,4 +1,4 @@
-## Features ([Demo](https://pwa-react-pokedex.netlify.app/))
+## React Pokedex ([Demo](https://pwa-react-pokedex.netlify.app/))
 
 ## Installation
 
